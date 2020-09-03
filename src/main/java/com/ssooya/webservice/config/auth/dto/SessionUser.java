@@ -3,8 +3,10 @@ package com.ssooya.webservice.config.auth.dto;
 import com.ssooya.webservice.domain.user.User;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 @Getter
-public class SessionUser {
+public class SessionUser implements Serializable {
 
 	// 인증된 사용자 정보만 필요로 하는 클래스
 	// 필요한 정보만 가져옴옴
@@ -15,7 +17,7 @@ public class SessionUser {
 	public SessionUser(User user){
 		this.name = user.getName();
 		this.email = user.getEmail();
-		this.picture = getPicture();
+		this.picture = user.getPicture();
 	}
 
 }
