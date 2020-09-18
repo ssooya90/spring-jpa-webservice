@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
@@ -17,11 +19,16 @@ public class IndexController {
 	private final PostsService postsService;
 
 	@GetMapping("/")
-	public String index(Model model, @LoginUser SessionUser user) {
+	public String index(Model model, @LoginUser SessionUser user, HttpServletRequest request) {
 
 		model.addAttribute("posts",postsService.findAllDesc());
 
 		if(user != null){ model.addAttribute("userName",user.getName()); }
+
+		String url = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
+
+		model.addAttribute("url",url);
+
 
 		return "index";
 	}
