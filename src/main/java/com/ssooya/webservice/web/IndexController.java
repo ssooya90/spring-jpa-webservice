@@ -25,9 +25,12 @@ public class IndexController {
 
 		if(user != null){ model.addAttribute("userName",user.getName()); }
 
-		String url = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
+		String urlStr = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
 
-		model.addAttribute("url",url);
+		System.out.println("URL@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		System.out.println(urlStr);
+
+		model.addAttribute("urlStr",urlStr);
 
 
 		return "index";
